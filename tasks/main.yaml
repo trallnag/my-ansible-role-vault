@@ -1,6 +1,5 @@
 # ------------------------------------------------------------------------------
 
-
 - name: Install Vault with asdf
   import_role:
     name: trallnag.asdf_plugin
@@ -10,16 +9,18 @@
     asdf_plugin_package_versions: ["1.9.0"]
     asdf_plugin_package_version_global: "1.9.0"
 
-
 # ------------------------------------------------------------------------------
-
+# Bash
 
 - name: Setup completion for Bash
   blockinfile:
-    path: ~/.bashrc
+    path: "{{ bash_bashrc_middle }}"
     marker: "# {mark} :: ANSIBLE MANAGED BLOCK :: {{ role_name }}"
     block: |
       complete -C vault vault
+
+# ------------------------------------------------------------------------------
+# Zsh
 
 - name: Setup completion for Zsh
   ansible.builtin.blockinfile:
@@ -27,23 +28,5 @@
     marker: "# {mark} :: ANSIBLE MANAGED BLOCK :: {{ role_name }}"
     block: |
       complete -o nospace -C vault vault
-
-
-# ------------------------------------------------------------------------------
-
-
-- name: Add Bayer specific init block to {{ zsh_zprofile_bottom }}
-  blockinfile:
-    path: "{{ zsh_zprofile_bottom }}"
-    marker: "# {mark} :: ANSIBLE MANAGED BLOCK :: {{ role_name }} :: bayer specific"
-    block: |
-      export VAULT_ADDR="https://vault.agro.services"
-  tags:
-    - bayer
-
-- name: Compile {{ zsh_zprofile_bottom }}
-  when: task.changed
-  ansible.builtin.command: zsh -c 'zcompile -R {{ zsh_zprofile_bottom }}'
-
 
 # ------------------------------------------------------------------------------
