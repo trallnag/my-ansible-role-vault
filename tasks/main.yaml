@@ -1,5 +1,6 @@
 # ------------------------------------------------------------------------------
 
+
 - name: Install Vault with asdf
   import_role:
     name: trallnag.asdf_plugin
@@ -8,6 +9,7 @@
     asdf_plugin_git_url: https://github.com/asdf-community/asdf-hashicorp.git
     asdf_plugin_package_versions: ["1.9.0"]
     asdf_plugin_package_version_global: "1.9.0"
+
 
 # ------------------------------------------------------------------------------
 # Bash
@@ -19,8 +21,10 @@
     block: |
       complete -C vault vault
 
+
 # ------------------------------------------------------------------------------
 # Zsh
+
 
 - name: Setup completion for Zsh
   ansible.builtin.blockinfile:
@@ -28,5 +32,6 @@
     marker: "# {mark} :: ANSIBLE MANAGED BLOCK :: {{ role_name }}"
     block: |
       complete -o nospace -C vault vault
+
 
 # ------------------------------------------------------------------------------
