@@ -7,8 +7,8 @@
   vars:
     asdf_plugin_name: vault
     asdf_plugin_git_url: https://github.com/asdf-community/asdf-hashicorp.git
-    asdf_plugin_package_versions: ["1.9.0"]
-    asdf_plugin_package_version_global: "1.9.0"
+    asdf_plugin_package_versions: ["1.10.1"]
+    asdf_plugin_package_version_global: "1.10.1"
 
 
 # ------------------------------------------------------------------------------
